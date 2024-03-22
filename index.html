@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Towards Neuro-Symbolic Video Understanding">
+  <meta name="keywords" content="video, understanding, reasoning, neuro-symbolic, ai, temporal, logic, formal, methods">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Towards Neuro-Symbolic Video Understanding</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Towards Neuro-Symbolic Video Understanding</h1>
+          <div class="is-size-5 publication-venue">
+            Anonymous Authors
+          </div>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://www.google.com"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://www.google.com"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://www.google.com"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://www.google.com"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://www.google.com"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Slides</span>
+                  </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="rows is-centered has-text-centered">
+      <video autoplay muted loop playsinline height="100%">
+        <source src="static/videos/flying_caption.mp4" type="video/mp4">
+      </video>
+      <br><br>
+      <h2 class="title is-3">Abstract</h2>
+      <div class="content has-text-justified">
+        <p>
+        The unprecedented surge in video data production in recent years necessitates efficient tools to extract meaningful frames from videos for downstream tasks. Long-term temporal reasoning is a key desideratum for frame retrieval systems. While state-of-the-art foundation models, like VideoLLaMA and ViCLIP, are proficient in short-term semantic understanding, they surprisingly fail at long-term reasoning across frames. A key reason for this failure is that they intertwine per-frame perception and temporal reasoning into a single deep network. Hence, decoupling but co-designing semantic understanding and temporal reasoning is essential for efficient scene identification. We propose a system that leverages vision-language models for semantic understanding of individual frames but effectively reasons about the long-term evolution of events using state machines and temporal logic (TL) formulae that inherently capture memory. Our TL-based reasoning improves the F1 score of complex event identification by 9-15% compared to benchmarks that use GPT4 for reasoning on state-of-the-art self-driving datasets such as Waymo and NuScenes.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container is-max-desktop">
+  <div class="rows is-centered">
+    <div class="row">
+      <h2 class="title is-3 has-text-centered">Methodology</h2>
+    </div>
+    <br>
+    <div class="row">
+      <p>
+        We introduce a novel way to identify scenes of interest using a neuro-symbolic approach. Given video streams or clips alongside the temporal logic specification &Phi;, Neuro-Symbolic Visual Search with Temporal Logic (NSVS-TL)  identifies scenes of interest.
+      </p>
+    </div>
+
+    <br>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <img src="static/images/fig1_teaser.png" alt="Method Overview">
+      </div>
+    </div>
+    <p>
+      <ul class="dashed-list">
+        <li> <b>Step 1: </b>We calibrate the confidence of neural perception models to ensure precise object detection. This calibration enables the detection of relevant propositions in a given frame to construct a probabilistic automaton.
+        </li>
+        <li> <b> Step 2: </b>Subsequently, each frame undergoes a validation process utilizing two distinct validation functions. This step ensures that only frames containing relevant visual information proceed to the next phase of the method.
+        </li>
+        <li> <b> Step 3: </b>Upon validation, we construct a probabilistic automaton dynamically to encapsulate the temporal and logical relations between successive frames.
+        </li>
+        <li> <b> Step 4: </b>Finally, we utilize a model-checking method to determine whether a constructed automaton satisfies the temporal logic specification. If an automaton passes this check, then a sequence of frames within the automaton is identified as a scene of interest by the given temporal logic specification.
+        </li>
+      </ul>
+    </p>
+  </div>
+  <br>
+  <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h3 class="title is-4">Autonomous Driving Example</h3>
+        <video autoplay muted loop playsinline height="100%">
+            <source src="static/videos/autonous_driving_demo.mp4" type="video/mp4">
+        </video>
+      </div>
+  </div>
+</div>
+<br><br>
+
+<div class="container is-max-desktop">
+  <div class="row">
+    <h2 class="title is-3 has-text-centered">Key Capabilities</h2>
+  </div>
+  <br>
+  <div class="columns is-centered">
+    <div class="column">
+      <div class="content">
+        <h3 class="title is-4 has-text-centered">Long Horizon Video Understanding</h3>
+        <p>
+          We evaluate multi-event sequences with temporally extended gaps which have a large impact on video length. We observe the consistency with videos spanning up to 40 minutes, indicating reliability in handling long videos.
+        </p>
+      </div>
+    </div>
+    <div class="column">
+      <div class="columns is-centered">
+        <div class="column content">
+          <h3 class="title is-4 has-text-centered">Plug In Your Own Model</h3>
+          <p>
+            Our framework allows for the integration of any neural perceptual model, enhancing the capability to understand videos. This enables us to localize frames of interest with respect to queries.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="columns is-centered">
+    <div class="column">
+      <div class="content">
+        <img src="static/images/fig5b_performance_in_durations.png">
+      </div>
+    </div>
+    <div class="column">
+      <div class="columns is-centered">
+        <div class="column content">
+          <img src="static/images/fig5a_performance_different_nn.png">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="title is-4 has-text-centered">Comparison to Benchmark</h3>
+  <p>
+    From the experiments, we observe that NSVS-TL with various neural 
+    perception models performs differently depending on the complexity of the 
+    TL specification and datasets. Using the datasets, we see that for single 
+    event scenarios, both our method and LLM-based reasoning perform reasonably 
+    well since these events do not require complex reasoning whereas for 
+    multi-event scenarios, our TL-based reasoning outperforms all LLM-based 
+    baselines. 
+  </p>
+  <br>
+  <img src="static/images/fig6_performance_result.png">
+</div>
+<br>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{anonymous,
+  author    = {anonymous},
+  title     = {anonymous},
+  journal   = {anonymous},
+  year      = {anonymous},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            Website source based on <a href="https://github.com/nerfies/nerfies.github.io">this source code</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
